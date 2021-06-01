@@ -65,6 +65,10 @@ function showTemperature(response) {
   );
   document.querySelector("#atmosphere").innerHTML =
     response.data.weather[0].main;
+
+    let iconElement = document.querySelector("#icon");
+    iconElement.setAtribute("src", `https://openweathermap.org/img/wn/04d@2x.png`);
+  
 }
 
 function search(city) {
@@ -73,23 +77,7 @@ function search(city) {
   axios.get(apiUrl).then(showTemperature);
 }
 
-function toFahrenheit(event) {
-    event.preventDefault();
-    let tempData = document.querySelector("#temperature");
-    tempData.innerHTML = 37;
-  }
-  function toCelsius(event) {
-    event.preventDefault();
-    let tempData = document.querySelector("#temperature");
-    tempData.innerHTML = 3;
-  }
-  
-  let fahrenheitLink = document.querySelector("#fahrenheit-link");
-  fahrenheitLink.addEventListener("click", toFahrenheit);
-  
-  let celsiusLink = document.querySelector("#celsius-link");
-  celsiusLink.addEventListener("click", toCelsius);
-  
+
 function handleSubmit(event) {
   event.preventDefault();
   let city = document.querySelector("#search-city").value;
@@ -112,5 +100,23 @@ function getLocation(event) {
 
 let currentLocationButton = document.querySelector("#geolocation");
 currentLocationButton.addEventListener("click", getLocation);
+
+function toFahrenheit(event) {
+  event.preventDefault();
+  let tempData = document.querySelector("#temp");
+  
+}
+function toCelsius(event) {
+  event.preventDefault();
+  let tempData = document.querySelector("#temp");
+ 
+}
+
+let fahrenheitLink = document.querySelector("#fahrenheit-link");
+fahrenheitLink.addEventListener("click", toFahrenheit);
+
+let celsiusLink = document.querySelector("#celsius-link");
+celsiusLink.addEventListener("click", toCelsius);
+
 
 search("São Paulo");
