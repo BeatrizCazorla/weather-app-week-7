@@ -165,3 +165,9 @@ small{
   color: #fff;
   text-align: center;
 }
+.weather-forecast{ 
+  color: #fff;  
+  position: relative;
+  top: -200px;
+  left: 100px;
+}
