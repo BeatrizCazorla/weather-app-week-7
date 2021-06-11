@@ -168,8 +168,7 @@ small{
 }
 #forecast{ 
   color: #fff;  
-  
-  
-  
-  
+  text-align: center;
+  position: relative;
+  top: 200px;  
 }
