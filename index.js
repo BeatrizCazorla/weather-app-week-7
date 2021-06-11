@@ -54,6 +54,44 @@ function formatTime(time) {
 let currentTime = document.querySelector("#time");
 currentTime.innerHTML = formatTime(now);
 
+function displayForecast(response){
+  console.log(response.data.daily);
+  let forecastElement = document.querySelector("#forecast");
+
+  let forecastHTML = `<div class = "row">`;
+
+  let days = ["Thu", "Fri", "Sat", "Sun"];
+  days.forEach(function(day){
+    forecastHTML = forecastHTML + ` <div class = "weather-forecast">
+  
+    <div class = "col-2">
+      <div class = "weather-forecast-date">${day}</div>
+    <img src = "https://openweathermap.org/img/wn/10d@2x.png"
+    alt = ""
+    width="50"
+    />
+    <div class = "weather-min-max-temperatures">
+    <span class = "weather-forecast-max-temp">18°</span>
+    <span class = "weather-forecast-min-temp">12°</span>
+    </div>
+    
+</div>
+</div>`;
+  });
+  
+forecastHTML = forecastHTML + `</div>`;
+forecastElement.innerHTML = forecastHTML;
+}
+
+function getForecast(coordinates){
+  console.log(coordinates);
+  let apiKey = "ca064a33594039c83e60c3ec3180633b";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?
+  lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+
+  axios.get(apiUrl).then(displayForecast);
+}
+
 function showTemperature(response) {
   document.querySelector("#city").innerHTML = response.data.name;
   celsiusTemperature = response.data.main.temp;
@@ -67,7 +105,8 @@ function showTemperature(response) {
 
     let iconElement = document.querySelector("#icon");
     iconElement.setAttribute("src", `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
-   
+  
+    getForecast(response.data.coord);
   
 }
 
@@ -133,3 +172,4 @@ celsiusLink.addEventListener("click", toCelsius);
 
 
 search("São Paulo");
+displayForecast();
