@@ -135,13 +135,12 @@ function handleSubmit(event) {
   let city = document.querySelector("#search-city").value;
   search(city);
 }
-
-
 function getForecast(coordinates) {
   let apiKey = "ca064a33594039c83e60c3ec3180633b";
   let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(showTemperature);
+  axios.get(apiUrl).then(displayForecast);
 }
+
 
 function getLocation(event) {
   event.preventDefault();

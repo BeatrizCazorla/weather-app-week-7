@@ -169,4 +169,9 @@ small{
 #forecast{ 
   color: #fff;  
   text-align: center; 
+  position: relative;
+  top: -120px;
+  font-weight: 700;
+  font-size: 20px;
+
 }
